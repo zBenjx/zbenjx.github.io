@@ -21,10 +21,10 @@ $logoImage = "https://i.imgur.com/YGJRJKC.jpg";
 $mainLogo = "https://i.imgur.com/lRKzu3k.jpg";
 $linkHome = "#";
 $linkPunishments = "/punishments";
-$linkStore = "/store";
-$linkTwitter = "/twitter";
-$linkDiscord = "/discord";
-$serverName = "MC-Market";
+$linkStore = "https://lookcraft.xyz/tienda";
+$linkTwitter = "";
+$linkDiscord = "https://lookcraft.xyz/discord";
+$serverName = "LookCraft";
 $serverIp = "play.lookcraft.xyz";
 $serverCopyright = "MC-Market";
  ?>

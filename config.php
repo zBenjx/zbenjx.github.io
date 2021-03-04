@@ -12,7 +12,7 @@ Made by Tomás Guerra ® http://www.tomasguerra.cl to MC-Market Community
 All rights reserved ® 2019
                                                                                 -->
 
-<?html
+<?php
 
 $siteTitle = "LookCraft | Pagina Oficial";
 $favicon = "https://gamepedia.cursecdn.com/minecraft_gamepedia/4/44/Grass_Block_Revision_6.png";

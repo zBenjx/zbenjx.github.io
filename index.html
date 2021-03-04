@@ -16,8 +16,8 @@ All rights reserved ® 2019
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" href="<?php print $favicon; ?>" type="image/x-icon"/>
-    <title><?php print $siteTitle; ?></title>
+    <link rel="icon" href="<?html print $favicon; ?>" type="image/x-icon"/>
+    <title><?html print $siteTitle; ?></title>
     <link rel="stylesheet" href="css/bulma.css">
      <script src="bulma-toast.min.js"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
@@ -31,7 +31,7 @@ All rights reserved ® 2019
     height: 100%;
     margin: 0;
     padding: 0;
-    background-image: url('<?php print $backgroundImage; ?>');
+    background-image: url('<?html print $backgroundImage; ?>');
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -42,7 +42,7 @@ All rights reserved ® 2019
           <div class="container">
             <div class="navbar-brand">
               <a class="navbar-item">
-                <img src="<?php print $logoImage; ?>" alt="Logo">
+                <img src="<?html print $logoImage; ?>" alt="Logo">
               </a>
               <span class="navbar-burger burger" data-target="navbarMenuHeroC">
                 <span></span>
@@ -52,31 +52,31 @@ All rights reserved ® 2019
             </div>
             <div id="navbarMenuHeroB" class="navbar-menu">
               <div class="navbar-end">
-                <a class="navbar-item" href="<?php print $linkHome; ?>">
+                <a class="navbar-item" href="<?html print $linkHome; ?>">
                   <span class="icon has-text-light">
                     <i class="fas fa-home"></i>
                   </span>
                   <span>HOME</span>
                 </a>
-                  <a class="navbar-item" href="<?php print $linkPunishments; ?>">
+                  <a class="navbar-item" href="<?html print $linkPunishments; ?>">
                     <span class="icon has-text-light">
                       <i class="fas fa-gavel"></i>
                     </span>
                     <span>PUNISHMENTS</span>
                   </a>
-                  <a class="navbar-item" href="<?php print $linkStore; ?>">
+                  <a class="navbar-item" href="<?html print $linkStore; ?>">
                     <span class="icon has-text-light">
                       <i class="fas fa-shopping-cart"></i>
                     </span>
                     <span>STORE</span>
                   </a>
-                  <a class="navbar-item" href="<?php print $linkTwitter; ?>">
+                  <a class="navbar-item" href="<?html print $linkTwitter; ?>">
                     <span class="icon has-text-light" href="<?php print $linkTwitter; ?>">
-                      <i class="fab fa-twitter" href="<?php print $linkTwitter; ?>"></i>
+                      <i class="fab fa-twitter" href="<?html print $linkTwitter; ?>"></i>
                     </span>
                   </a>
                 <span class="navbar-item">
-                  <a class="button is-light is-rounded is-inverted" href="<?php print $linkDiscord; ?>">
+                  <a class="button is-light is-rounded is-inverted" href="<?html print $linkDiscord; ?>">
                     <span class="icon">
                       <i class="fab fa-discord"></i>
                     </span>
@@ -92,17 +92,17 @@ All rights reserved ® 2019
       <!-- Hero content: will be in the middle -->
       <div class="hero-body">
         <div class="container has-text-centered">
-          <img src="<?php print $mainLogo; ?>" style="width: 13rem;">
+          <img src="<?html print $mainLogo; ?>" style="width: 13rem;">
           <h1 class="title">
-            <?php print $serverName; ?>
+            <?html print $serverName; ?>
           </h1>
-          <h2 class="subtitle is-5">There are currently <span data-playercounter-ip="<?php print $serverIp; ?>">0</span> players online</h2>
+          <h2 class="subtitle is-5">Hay actualmente <span data-playercounter-ip="<?html print $serverIp; ?>">0</span> jugadores conectados</h2>
 
-          <a class="button is-secondary is-rounded" id="player-count-button" data-clipboard-text="<?php print $serverIp; ?>">
+          <a class="button is-secondary is-rounded" id="player-count-button" data-clipboard-text="<?html print $serverIp; ?>">
               <span class="icon is-small">
                 <i class="fas fa-clipboard"></i>
               </span>
-              <span><?php print $serverIp; ?></span>
+              <span><?html print $serverIp; ?></span>
             </a>
           </div>
         </div>
@@ -139,7 +139,7 @@ All rights reserved ® 2019
   <footer class="footer">
   <div class="content has-text-centered">
     <p>
-      <strong><?php print $serverCopyright ?> ® </strong> website by <a href="http://tomasguerra.cl">ChileanS
+      <strong><?html print $serverCopyright ?> ® </strong> website by <a href="http://tomasguerra.cl">ChileanS
         <span class="icon has-text-danger">
           <i class="fas fa-heart"></i>
         </span>

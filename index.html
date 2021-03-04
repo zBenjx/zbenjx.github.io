@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Liffhy">
+    <link rel="stylesheet" href="style.css"> <!-- To change the background image open this file-->
+    <link rel="stylesheet" href="animations.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+    <meta name="description" content="Web site created by liffhy32">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your server name| Official</title>
+</head>
+<body>
+    <nav id="nav-bar">
+        <div class="nav-content">
+            <label id="name-server"> your server name </label>
+            <ul id="navigation">
+                <li id="player-counter">The are <span data-playercounter-ip="mc.hypixel.net">0</span> <b>players</b> online on the server</li> <br>
+                <li><i class="fas fa-compass" id="menu" onclick="menu()"></i></li>
+                <li><i class="fas fa-times" id="close" style="display: none;" onclick="Close()"></i></li>
+            </ul>
+        </div>
+        <ul id="navigation-links" style="display: none;">
+            <li><a href="#">Auditions</a></li> <!-- To add a link insert your https link in href="here" -->
+            <li><a href="#">Shop</a></li>
+            <li><a href="#">About us</a></li>
+        </ul>
+        
+    </nav>
+    <section class="header">
+        <div class="wrapper">
+            <div class="content">
+                <img src="./v2.png" alt="logo" width="300" height="300"> <!-- To modify the logo src=""// to change the height of your logo change width and height options -->
+                <ul id="platforms">
+                    <h4>Platforms</h4>
+                    <li><a href="#">Discord</a></li>
+                    <li><a href="#">TeamSpeak</a></li>
+                    <li><a href="#">Telegram</a></li>
+                    <li><a href="#">Instagram</a></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <script src="https://cdn.jsdelivr.net/gh/leonardosnt/mc-player-counter/dist/mc-player-counter.min.js"></script>
+    <script>
+        var compass = document.getElementById("menu");
+        var nav = document.getElementById("nav-bar");
+        var closeM = document.getElementById("close");
+        var links = document.getElementById("navigation-links");
+
+        function menu(){
+
+            if(compass.style.display = "block"){
+                nav.style.height="100vh";
+                compass.style.display="none";
+                closeM.style.display="block";
+                nav.style.transition="all 0.3s ease";
+                links.style.display ="block";
+            }
+}
+        function Close(){
+            if((closeM.style.display == "block") & (nav.style.height == "100vh")){
+                nav.style.height = "120px";
+                compass.style.display = "block";
+                closeM.style.display = "none";
+                links.style.display = "none"
+            }
+}
+    </script>
+</body>
+</html>

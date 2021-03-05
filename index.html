@@ -1,0 +1,92 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css"
+    />
+    <link rel="stylesheet" href="index.css" />
+    <script
+      crossorigin="anonymous"
+      defer
+      integrity="sha384-g5uSoOSBd7KkhAMlnQILrecXvzst9TdC09/VM+pjDTCM+1il8RHz5fKANTFFb+gQ"
+      src="https://use.fontawesome.com/releases/v5.8.1/js/all.js"
+    ></script>
+    <title>StrixMC</title>
+  </head>
+  <body>
+    <header>
+      <div class="branding">
+        <figure class="image is-64x64">
+          <img src="img/logo.png" class="is-rounded" />
+        </figure>
+        <a href="" class="logo"> StrixMC </a>
+      </div>
+
+      <nav>
+        <ul class="nav-links">
+          <li>
+            <a href="https://strixmc.com/tienda">
+              <i class="fas fa-shopping-cart" id="icon"></i>
+              Tienda
+            </a>
+            <a href="https://strixmc.com/discord"
+              ><i class="fab fa-discord" id="icon"></i> Discord
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <div class="hero is-small is-dark">
+      <div class="hero-body">
+        <div class="container">
+          <div class="columns">
+            <div class="column m-columns">
+              <p class="title is-3">StrixMC Network</p>
+              <p class="subtitle is-6">
+                Repellendus repudiandae ut dolor nihil dolores amet suscipit
+                quam? Et dolorum voluptatum impedit corporis perferendis est
+                voluptas fuga, quia, aperiam ex fugiat.
+              </p>
+              <button class="button is-white">
+                <i class="far fa-clipboard"> </i>
+                Lorem
+              </button>
+            </div>
+            <div class="column">
+              <figure class="image is-square">
+                <img
+                  src="img/logo-transparent.png"
+                  style="width: 350px; height: 550px"
+                />
+              </figure>
+            </div>
+          </div>
+        </div>
+      </div>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+        <path
+          fill="#00fcc6"
+          fill-opacity="1"
+          d="M0,192L80,208C160,224,320,256,480,256C640,256,800,224,960,208C1120,192,1280,192,1360,192L1440,192L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z"
+        ></path>
+      </svg>
+    </div>
+
+    <section>
+      <p>
+        <i class="fas fa-feather-alt" id="feather"></i>
+        Hecho sin tanto cariño. ~Slide.
+      </p>
+    </section>
+  </body>
+  <script src="https://cdn.jsdelivr.net/npm/@widgetbot/crate@3" async defer>
+    const crate = new Crate({
+      server: '733309063160528996', // 🦉StrixMC
+      channel: '733309064691580970' // #📖┊⸢general⸥
+    })
+    crate.notify('Nuestro discord!')
+  </script>
+</html>

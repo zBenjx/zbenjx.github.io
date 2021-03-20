@@ -8,7 +8,8 @@
 
 body {
   font-family: 'Barlow Condensed', sans-serif;
-  background-color: #363636;
+  background-image: url('img/logolook.png');
+  background-repeat: no-repeat;
 }
 
 li a {

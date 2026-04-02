@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LookCraft | Pagina oficial</title>
+    <title>LookCraft | Servidor Minecraft</title>
     
     <link rel="icon" type="image/png" href="favicon.png">
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
@@ -19,6 +19,7 @@
             text-align: center;
         }
 
+        /* --- FONDO DEL SITIO --- */
         body {
             background-color: #0f0f1a; 
             background-image: url('background.png');
@@ -31,6 +32,7 @@
             align-items: center;
         }
 
+        /* --- CONTENEDOR PRINCIPAL PARA ALINEAR TODO --- */
         .page-wrap {
             display: flex;
             flex-direction: column;
@@ -39,13 +41,33 @@
             padding: 20px;
         }
 
+        /* --- ANIMACIÓN PARA EL LOGO FLOTANTE --- */
+        @keyframes flotarLogo {
+            0% {
+                transform: translateY(0px);
+                filter: drop-shadow(0px 5px 5px rgba(0,0,0,0.5));
+            }
+            50% {
+                transform: translateY(-15px); /* Sube 15px */
+                filter: drop-shadow(0px 20px 10px rgba(0,0,0,0.3)); 
+            }
+            100% {
+                transform: translateY(0px);
+                filter: drop-shadow(0px 5px 5px rgba(0,0,0,0.5));
+            }
+        }
+
+        /* --- ESTILOS DEL LOGO --- */
         .logo-container img {
-            max-width: 250px; /* Logo más pequeño como pediste */
+            max-width: 250px; /* Tamaño ajustado */
             width: 100%;
             height: auto;
             margin-bottom: 15px;
+            /* Aplicamos la animación de flotar aquí */
+            animation: flotarLogo 3s ease-in-out infinite;
         }
 
+        /* --- CAJA CENTRAL (ESTILO NEÓN) --- */
         .container {
             background: rgba(10, 10, 20, 0.85);
             padding: 40px;
@@ -56,10 +78,11 @@
             box-shadow: 0 0 30px rgba(34, 177, 196, 0.4);
         }
 
+        /* --- TEXTOS --- */
         .slogan { font-size: 0.9rem; line-height: 1.6; margin-bottom: 25px; }
         .ip-label { font-size: 0.7rem; color: #aaa; margin-bottom: 5px; }
         
-        /* --- ESTILOS NUEVOS PARA LA CAJA DE LA IP --- */
+        /* --- CAJA DE LA IP INTERACTIVA --- */
         .ip-box {
             border: 2px solid #22b1c4;
             padding: 15px;
@@ -68,26 +91,16 @@
             color: #00ffff;
             font-size: 1.1rem;
             text-shadow: 0 0 5px #00ffff;
-            cursor: pointer; /* Cambia el cursor a una manito */
-            transition: all 0.2s ease; /* Animación suave */
+            cursor: pointer;
+            transition: all 0.2s ease;
             position: relative;
         }
 
-        /* Efecto al pasar el mouse por encima de la IP */
         .ip-box:hover {
             background: rgba(34, 177, 196, 0.3);
             transform: scale(1.02);
         }
 
-        .server-stats {
-            display: flex;
-            justify-content: space-around;
-            font-size: 0.75rem;
-            color: #ccc;
-            line-height: 1.8;
-        }
-
-        /* Textito de "¡Copiado!" oculto por defecto */
         #mensaje-copiado {
             display: none;
             font-size: 0.6rem;
@@ -95,7 +108,17 @@
             margin-top: 10px;
             text-shadow: none;
         }
+
+        /* --- ESTADÍSTICAS DEL SERVIDOR --- */
+        .server-stats {
+            display: flex;
+            justify-content: space-around;
+            font-size: 0.75rem;
+            color: #ccc;
+            line-height: 1.8;
+        }
         
+        /* --- ADAPTACIÓN PARA CELULARES --- */
         @media (max-width: 600px) {
             .container { padding: 25px 15px; }
             .logo-container img { max-width: 200px; }
@@ -109,17 +132,17 @@
     <div class="page-wrap">
         
         <div class="logo-container">
-            <img src="logo_principal.png" alt="Logo">
+            <img src="logo_principal.png" alt="Logo de LookCraft">
         </div>
 
         <div class="container">
-            <p class="slogan">¡Únete a la mejor aventura de Minecraft!</p>
+            <p class="slogan">¡Únete al mejor survival custom!</p>
             
             <div class="ip-label">IP DEL SERVIDOR (Clic para copiar)</div>
             
             <div class="ip-box" onclick="copiarIP()">
-                <span id="ip-texto">play.lookcraft.net</span>
-                <div id="mensaje-copiado">¡Ip copiada al portapapeles!</div>
+                <span id="ip-texto">mc.lookcraft.net</span>
+                <div id="mensaje-copiado">¡Ip copiada con exito!</div>
             </div>
 
             <div class="server-stats">
@@ -131,14 +154,12 @@
     </div>
 
     <script>
-        // Función para copiar la IP
+        // Función para copiar la IP al portapapeles
         function copiarIP() {
             const ip = document.getElementById("ip-texto").innerText;
             navigator.clipboard.writeText(ip).then(() => {
                 const mensaje = document.getElementById("mensaje-copiado");
-                mensaje.style.display = "block"; // Muestra el mensaje
-                
-                // Oculta el mensaje después de 2 segundos (2000 milisegundos)
+                mensaje.style.display = "block"; 
                 setTimeout(() => {
                     mensaje.style.display = "none";
                 }, 2000);
@@ -147,8 +168,7 @@
             });
         }
 
-        // Función para obtener los jugadores en vivo
-        // RECUERDA: Cambia esta variable si tu IP es diferente
+        // Función para consultar la API de Minecraft
         const ipDelServidor = "play.lookcraft.net"; 
         
         fetch('https://api.mcsrvstat.us/3/' + ipDelServidor)
@@ -156,12 +176,10 @@
             .then(data => {
                 const contadorElemento = document.getElementById('contador-jugadores');
                 
-                // Si el servidor está encendido (online)
                 if (data.online) {
                     contadorElemento.innerText = "Jugadores: " + data.players.online + "/" + data.players.max;
                     contadorElemento.style.color = "#55ff55"; // Verde
                 } else {
-                    // Si el servidor está apagado
                     contadorElemento.innerText = "Estado: Apagado";
                     contadorElemento.style.color = "#ff5555"; // Rojo
                 }

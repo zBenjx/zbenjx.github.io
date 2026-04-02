@@ -6,7 +6,6 @@
     <title>LookCraft | Pagina oficial</title>
     
     <link rel="icon" type="image/png" href="favicon.png">
-
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     
     <style>
@@ -20,18 +19,18 @@
             text-align: center;
         }
 
-        /* --- IMAGEN DE FONDO (BACKGROUND) --- */
         body {
+            background-color: #0f0f1a; 
             background-image: url('background.png');
-            background-size: cover; /* Cubre toda la pantalla */
+            background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
+            background-attachment: fixed;
             display: flex;
             justify-content: center;
             align-items: center;
         }
 
-        /* --- CONTENEDOR CENTRAL --- */
         .page-wrap {
             display: flex;
             flex-direction: column;
@@ -40,30 +39,27 @@
             padding: 20px;
         }
 
-        /* --- LOGO PRINCIPAL --- */
         .logo-container img {
-            max-width: 250px; /* Ajusta el tamaño de tu logo aquí */
+            max-width: 250px; /* Logo más pequeño como pediste */
             width: 100%;
             height: auto;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
 
-        /* --- LA CAJA DEL SERVIDOR (Estilo Neón) --- */
         .container {
-            background: rgba(10, 10, 20, 0.85); /* Fondo oscuro transparente */
+            background: rgba(10, 10, 20, 0.85);
             padding: 40px;
-            border: 4px solid #8e44ad; /* Borde morado */
-            outline: 4px solid #22b1c4; /* Borde cian */
+            border: 4px solid #8e44ad;
+            outline: 4px solid #22b1c4;
             max-width: 600px;
             width: 100%;
             box-shadow: 0 0 30px rgba(34, 177, 196, 0.4);
         }
 
-        /* --- ESTILOS DE TEXTO --- */
         .slogan { font-size: 0.9rem; line-height: 1.6; margin-bottom: 25px; }
-        
         .ip-label { font-size: 0.7rem; color: #aaa; margin-bottom: 5px; }
         
+        /* --- ESTILOS NUEVOS PARA LA CAJA DE LA IP --- */
         .ip-box {
             border: 2px solid #22b1c4;
             padding: 15px;
@@ -72,6 +68,15 @@
             color: #00ffff;
             font-size: 1.1rem;
             text-shadow: 0 0 5px #00ffff;
+            cursor: pointer; /* Cambia el cursor a una manito */
+            transition: all 0.2s ease; /* Animación suave */
+            position: relative;
+        }
+
+        /* Efecto al pasar el mouse por encima de la IP */
+        .ip-box:hover {
+            background: rgba(34, 177, 196, 0.3);
+            transform: scale(1.02);
         }
 
         .server-stats {
@@ -81,11 +86,19 @@
             color: #ccc;
             line-height: 1.8;
         }
+
+        /* Textito de "¡Copiado!" oculto por defecto */
+        #mensaje-copiado {
+            display: none;
+            font-size: 0.6rem;
+            color: #fff;
+            margin-top: 10px;
+            text-shadow: none;
+        }
         
-        /* Ajuste para móviles */
         @media (max-width: 600px) {
             .container { padding: 25px 15px; }
-            .logo-container img { max-width: 280px; }
+            .logo-container img { max-width: 200px; }
             .ip-box { font-size: 0.9rem; }
             .server-stats { flex-direction: column; gap: 10px; }
         }
@@ -96,24 +109,68 @@
     <div class="page-wrap">
         
         <div class="logo-container">
-            <img src="logo_principal.png" alt="Polo Craft Logo">
+            <img src="logo_principal.png" alt="Logo">
         </div>
 
         <div class="container">
             <p class="slogan">¡Únete a la mejor aventura de Minecraft!</p>
             
-            <div class="ip-label">IP DEL SERVIDOR</div>
-            <div class="ip-box">
-                play.lookcraft.net
+            <div class="ip-label">IP DEL SERVIDOR (Clic para copiar)</div>
+            
+            <div class="ip-box" onclick="copiarIP()">
+                <span id="ip-texto">play.lookcraft.net</span>
+                <div id="mensaje-copiado">¡Ip copiada al portapapeles!</div>
             </div>
 
             <div class="server-stats">
                 <div>Versión: 1.21.11</div>
-                <div>Estado: 24/7</div>
+                <div id="contador-jugadores">Cargando jugadores...</div>
             </div>
         </div>
 
     </div>
+
+    <script>
+        // Función para copiar la IP
+        function copiarIP() {
+            const ip = document.getElementById("ip-texto").innerText;
+            navigator.clipboard.writeText(ip).then(() => {
+                const mensaje = document.getElementById("mensaje-copiado");
+                mensaje.style.display = "block"; // Muestra el mensaje
+                
+                // Oculta el mensaje después de 2 segundos (2000 milisegundos)
+                setTimeout(() => {
+                    mensaje.style.display = "none";
+                }, 2000);
+            }).catch(err => {
+                console.error('Error al copiar: ', err);
+            });
+        }
+
+        // Función para obtener los jugadores en vivo
+        // RECUERDA: Cambia esta variable si tu IP es diferente
+        const ipDelServidor = "play.lookcraft.net"; 
+        
+        fetch('https://api.mcsrvstat.us/3/' + ipDelServidor)
+            .then(response => response.json())
+            .then(data => {
+                const contadorElemento = document.getElementById('contador-jugadores');
+                
+                // Si el servidor está encendido (online)
+                if (data.online) {
+                    contadorElemento.innerText = "Jugadores: " + data.players.online + "/" + data.players.max;
+                    contadorElemento.style.color = "#55ff55"; // Verde
+                } else {
+                    // Si el servidor está apagado
+                    contadorElemento.innerText = "Estado: Apagado";
+                    contadorElemento.style.color = "#ff5555"; // Rojo
+                }
+            })
+            .catch(error => {
+                console.error("Error al cargar la API:", error);
+                document.getElementById('contador-jugadores').innerText = "Error cargando estado";
+            });
+    </script>
 
 </body>
 </html>

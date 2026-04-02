@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LookCraft | Servidor Minecraft</title>
+    <title>LookCraft | Pagina oficial</title>
     
     <link rel="icon" type="image/png" href="favicon.png">
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
@@ -32,38 +32,28 @@
             align-items: center;
         }
 
-        /* --- CONTENEDOR PRINCIPAL PARA ALINEAR TODO --- */
+        /* --- CONTENEDOR PRINCIPAL --- */
         .page-wrap {
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             padding: 20px;
+            width: 100%;
         }
 
         /* --- ANIMACIÓN PARA EL LOGO FLOTANTE --- */
         @keyframes flotarLogo {
-            0% {
-                transform: translateY(0px);
-                filter: drop-shadow(0px 5px 5px rgba(0,0,0,0.5));
-            }
-            50% {
-                transform: translateY(-15px); /* Sube 15px */
-                filter: drop-shadow(0px 20px 10px rgba(0,0,0,0.3)); 
-            }
-            100% {
-                transform: translateY(0px);
-                filter: drop-shadow(0px 5px 5px rgba(0,0,0,0.5));
-            }
+            0% { transform: translateY(0px); filter: drop-shadow(0px 5px 5px rgba(0,0,0,0.5)); }
+            50% { transform: translateY(-15px); filter: drop-shadow(0px 20px 10px rgba(0,0,0,0.3)); }
+            100% { transform: translateY(0px); filter: drop-shadow(0px 5px 5px rgba(0,0,0,0.5)); }
         }
 
-        /* --- ESTILOS DEL LOGO --- */
         .logo-container img {
-            max-width: 250px; /* Tamaño ajustado */
+            max-width: 250px; 
             width: 100%;
             height: auto;
             margin-bottom: 15px;
-            /* Aplicamos la animación de flotar aquí */
             animation: flotarLogo 3s ease-in-out infinite;
         }
 
@@ -76,13 +66,12 @@
             max-width: 600px;
             width: 100%;
             box-shadow: 0 0 30px rgba(34, 177, 196, 0.4);
+            z-index: 2;
         }
 
-        /* --- TEXTOS --- */
         .slogan { font-size: 0.9rem; line-height: 1.6; margin-bottom: 25px; }
         .ip-label { font-size: 0.7rem; color: #aaa; margin-bottom: 5px; }
         
-        /* --- CAJA DE LA IP INTERACTIVA --- */
         .ip-box {
             border: 2px solid #22b1c4;
             padding: 15px;
@@ -109,7 +98,6 @@
             text-shadow: none;
         }
 
-        /* --- ESTADÍSTICAS DEL SERVIDOR --- */
         .server-stats {
             display: flex;
             justify-content: space-around;
@@ -117,13 +105,77 @@
             color: #ccc;
             line-height: 1.8;
         }
+
+        /* --- BOTONES LATERALES (NUEVO) --- */
+        .side-btn {
+            position: fixed;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(10, 10, 20, 0.9);
+            padding: 20px;
+            text-decoration: none;
+            color: white;
+            font-size: 0.7rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+
+        .side-btn .emoji {
+            font-size: 2rem;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        /* Botón Tienda (Izquierda) */
+        .store-btn {
+            left: 30px;
+            border: 4px solid #f1c40f;
+            outline: 4px solid #e67e22;
+            box-shadow: 0 0 20px rgba(241, 196, 15, 0.4);
+        }
+        .store-btn:hover {
+            background: rgba(241, 196, 15, 0.3);
+            transform: translateY(-50%) scale(1.1); /* Efecto de crecimiento al pasar el mouse */
+        }
+
+        /* Botón Discord (Derecha) */
+        .discord-btn {
+            right: 30px;
+            border: 4px solid #5865F2;
+            outline: 4px solid #4752C4;
+            box-shadow: 0 0 20px rgba(88, 101, 242, 0.4);
+        }
+        .discord-btn:hover {
+            background: rgba(88, 101, 242, 0.3);
+            transform: translateY(-50%) scale(1.1);
+        }
         
-        /* --- ADAPTACIÓN PARA CELULARES --- */
-        @media (max-width: 600px) {
+        /* --- ADAPTACIÓN PARA CELULARES Y TABLETS PEQUEÑAS --- */
+        @media (max-width: 900px) {
             .container { padding: 25px 15px; }
             .logo-container img { max-width: 200px; }
             .ip-box { font-size: 0.9rem; }
             .server-stats { flex-direction: column; gap: 10px; }
+            
+            /* Los botones dejan de ser fijos a los lados y se ponen abajo */
+            .side-links {
+                display: flex;
+                gap: 20px;
+                margin-top: 30px;
+                justify-content: center;
+                width: 100%;
+            }
+            .side-btn {
+                position: static;
+                transform: none;
+                padding: 15px;
+                flex: 1;
+                max-width: 150px;
+            }
+            .store-btn:hover, .discord-btn:hover {
+                transform: scale(1.05); /* Desactiva el transform de translateY en celulares */
+            }
         }
     </style>
 </head>
@@ -141,8 +193,8 @@
             <div class="ip-label">IP DEL SERVIDOR (Clic para copiar)</div>
             
             <div class="ip-box" onclick="copiarIP()">
-                <span id="ip-texto">mc.lookcraft.net</span>
-                <div id="mensaje-copiado">¡Ip copiada con exito!</div>
+                <span id="ip-texto">play.lookcraft.net</span>
+                <div id="mensaje-copiado">¡IP COPIADA!</div>
             </div>
 
             <div class="server-stats">
@@ -151,10 +203,21 @@
             </div>
         </div>
 
+        <div class="side-links">
+            <a href="https://tienda.lookcraft.net" class="side-btn store-btn" target="_blank">
+                <span class="emoji">🛒</span>
+                TIENDA
+            </a>
+            
+            <a href="https://discord.lookcraft.net" class="side-btn discord-btn" target="_blank">
+                <span class="emoji">💬</span>
+                DISCORD
+            </a>
+        </div>
+
     </div>
 
     <script>
-        // Función para copiar la IP al portapapeles
         function copiarIP() {
             const ip = document.getElementById("ip-texto").innerText;
             navigator.clipboard.writeText(ip).then(() => {
@@ -168,7 +231,6 @@
             });
         }
 
-        // Función para consultar la API de Minecraft
         const ipDelServidor = "play.lookcraft.net"; 
         
         fetch('https://api.mcsrvstat.us/3/' + ipDelServidor)
@@ -178,10 +240,10 @@
                 
                 if (data.online) {
                     contadorElemento.innerText = "Jugadores: " + data.players.online + "/" + data.players.max;
-                    contadorElemento.style.color = "#55ff55"; // Verde
+                    contadorElemento.style.color = "#55ff55"; 
                 } else {
                     contadorElemento.innerText = "Estado: Apagado";
-                    contadorElemento.style.color = "#ff5555"; // Rojo
+                    contadorElemento.style.color = "#ff5555"; 
                 }
             })
             .catch(error => {
